@@ -1,5 +1,8 @@
 import React from 'react';
-// import store from '../store';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { getToken } from '../actions';
 
 class Login extends React.Component {
   constructor() {
@@ -25,15 +28,14 @@ class Login extends React.Component {
     const { name, email } = this.state;
     const result = name && email;
     this.setState({ disableBtn: !result });
-    //   if (name && email) {
-    //       this.setState({ disableBtn: false });
-    //   } else {
-    //       this.setState({ disableBtn: true });
-    //   }
+  }
+
+  handleClick = () => {
   }
 
   render() {
     const { name, email, disableBtn } = this.state;
+    const { payload } = this.props;
     return (
       <>
         <input
@@ -50,16 +52,27 @@ class Login extends React.Component {
           type="email"
           onChange={ this.handleChange }
         />
-        <button
-          type="button"
-          disabled={ disableBtn }
-          data-testid="btn-play"
-        >
-          Jogar
-        </button>
+        <Link to="/ingame">
+          <button
+            type="button"
+            disabled={ disableBtn }
+            data-testid="btn-play"
+            onClick={ () => payload() }
+          >
+            Jogar
+          </button>
+        </Link>
       </>
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  payload: propTypes.func.isRequired,
+};
+const mapDispatchToProps = (dispatch) => ({
+
+  payload: () => dispatch(getToken()),
+
+});
+export default connect(null, mapDispatchToProps)(Login);
