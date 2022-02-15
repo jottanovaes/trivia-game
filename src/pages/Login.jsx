@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getToken } from '../actions';
+import { getToken, requestSetPlayer } from '../actions';
 import SettingsBtn from '../components/SettingsBtn';
 
 class Login extends React.Component {
@@ -32,6 +32,10 @@ class Login extends React.Component {
   }
 
   handleClick = () => {
+    const { payload, history, payloadLogin } = this.props;
+    const { name, email } = this.state;
+    payload();
+    payloadLogin({ name, gravatarEmail: email });
   }
 
   render() {
@@ -58,7 +62,7 @@ class Login extends React.Component {
             type="button"
             disabled={ disableBtn }
             data-testid="btn-play"
-            onClick={ () => payload() }
+            onClick={ () => this.handleClick() }
           >
             Jogar
           </button>
@@ -76,6 +80,7 @@ Login.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
 
   payload: () => dispatch(getToken()),
+  payloadLogin: (payload) => dispatch(requestSetPlayer(payload)),
 
 });
 export default connect(null, mapDispatchToProps)(Login);
