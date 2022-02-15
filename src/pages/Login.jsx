@@ -30,11 +30,11 @@ class Login extends React.Component {
     this.setState({ disableBtn: !result });
   }
 
-  handleClick = () => {
+  handleClick = async () => {
     const { payload, history, payloadLogin } = this.props;
     const { name, email } = this.state;
-    payload();
-    payloadLogin({ name, gravatarEmail: email });
+    await payload();
+    await payloadLogin({ name, gravatarEmail: email });
     history.push('/ingame');
   }
 
