@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { getToken } from '../actions';
+import SettingsBtn from '../components/SettingsBtn';
 
 class Login extends React.Component {
   constructor() {
@@ -35,7 +36,7 @@ class Login extends React.Component {
 
   render() {
     const { name, email, disableBtn } = this.state;
-    const { payload } = this.props;
+    const { payload, history } = this.props;
     return (
       <>
         <input
@@ -62,14 +63,16 @@ class Login extends React.Component {
             Jogar
           </button>
         </Link>
+        <SettingsBtn history={ history } />
       </>
     );
   }
 }
 
 Login.propTypes = {
-  payload: propTypes.func.isRequired,
-};
+  payload: PropTypes.func,
+  history: PropTypes.objectOf,
+}.isRequired;
 const mapDispatchToProps = (dispatch) => ({
 
   payload: () => dispatch(getToken()),
