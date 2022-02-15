@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getToken } from '../actions';
+import { getToken, requestSetPlayer } from '../actions';
 import SettingsBtn from '../components/SettingsBtn';
 
 class Login extends React.Component {
@@ -30,9 +30,11 @@ class Login extends React.Component {
     this.setState({ disableBtn: !result });
   }
 
-  handleClick = async () => {
-    const { payload, history } = this.props;
-    await payload();
+  handleClick = () => {
+    const { payload, history, payloadLogin } = this.props;
+    const { name, email } = this.state;
+    payload();
+    payloadLogin({ name, gravatarEmail: email });
     history.push('/ingame');
   }
 
@@ -76,6 +78,7 @@ Login.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
 
   payload: () => dispatch(getToken()),
+  payloadLogin: (payload) => dispatch(requestSetPlayer(payload)),
 
 });
 export default connect(null, mapDispatchToProps)(Login);

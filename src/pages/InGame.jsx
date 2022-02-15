@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getToken, getTrivia } from '../actions';
 import fetchTrivia from '../services/fetchTrivia';
 import Question from '../components/Question';
+import Header from '../components/Header';
 
 class InGame extends React.Component {
   constructor() {
@@ -46,6 +47,7 @@ class InGame extends React.Component {
     console.log(questions);
     return (
       <>
+        <Header />
         <h1>Em jogo...</h1>
         {questions.results && (
           <Question
