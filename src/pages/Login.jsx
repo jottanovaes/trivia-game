@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getToken } from '../actions';
@@ -31,12 +30,15 @@ class Login extends React.Component {
     this.setState({ disableBtn: !result });
   }
 
-  handleClick = () => {
+  handleClick = async () => {
+    const { payload, history } = this.props;
+    await payload();
+    history.push('/ingame');
   }
 
   render() {
     const { name, email, disableBtn } = this.state;
-    const { payload, history } = this.props;
+    const { history } = this.props;
     return (
       <>
         <input
@@ -53,16 +55,14 @@ class Login extends React.Component {
           type="email"
           onChange={ this.handleChange }
         />
-        <Link to="/ingame">
-          <button
-            type="button"
-            disabled={ disableBtn }
-            data-testid="btn-play"
-            onClick={ () => payload() }
-          >
-            Jogar
-          </button>
-        </Link>
+        <button
+          type="button"
+          disabled={ disableBtn }
+          data-testid="btn-play"
+          onClick={ () => this.handleClick() }
+        >
+          Jogar
+        </button>
         <SettingsBtn history={ history } />
       </>
     );
