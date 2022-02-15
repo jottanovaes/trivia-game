@@ -22,10 +22,12 @@ class InGame extends React.Component {
   async getTrivia() {
     let questions = await fetchTrivia();
     const { payload } = this.props;
+    console.log(questions.response_code);
     if (questions.response_code) {
-      payload();
+      await payload();
       questions = await fetchTrivia();
     }
+    console.log(questions);
     const { loaded } = this.state;
     if (!loaded) {
       this.setState({

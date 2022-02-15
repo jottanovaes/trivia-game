@@ -15,14 +15,14 @@ export default class Question extends React.Component {
       <Answer
         answer={ answer }
         key={ index }
-        data-testid={ `wrong-answer-${index}` }
+        testid={ `wrong-answer-${index}` }
         htmlDecode={ this.htmlDecode }
       />
     ));
     const correct = (<Answer
       answer={ result.correct_answer }
       key="correct"
-      data-testid="correct-answer"
+      testid="correct-answer"
       htmlDecode={ this.htmlDecode }
     />);
 
@@ -39,8 +39,10 @@ export default class Question extends React.Component {
     return (
       <div className="questions">
         <h1 data-testid="question-category">{`${category}`}</h1>
-        {this.htmlDecode(`<p data-testid='question-text'>${question}</p>`)}
-        {this.renderAnswers(result)}
+        <p data-testid="question-text">{question}</p>
+        <div data-testid="answer-options">
+          {this.renderAnswers(result)}
+        </div>
       </div>
     );
   }

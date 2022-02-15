@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 export default class Answer extends React.Component {
   render() {
-    const { answer } = this.props;
+    const { answer, testid } = this.props;
     return (
-      <button type="button">
+      <button type="button" data-testid={ testid }>
         {answer}
       </button>);
   }
