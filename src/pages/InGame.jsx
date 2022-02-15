@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTrivia } from '../actions';
+import { getToken, getTrivia } from '../actions';
 import fetchTrivia from '../services/fetchTrivia';
+import Question from '../components/Question';
 
 class InGame extends React.Component {
   constructor() {
@@ -18,29 +19,49 @@ class InGame extends React.Component {
   }
 
   async getTrivia() {
-    const questions = await fetchTrivia();
-    if (questions.response_code) === 3 {
-      
+    let questions = await fetchTrivia();
+    const { payload } = this.props;
+    if (questions.response_code) {
+      payload();
+      questions = await fetchTrivia();
     }
     const { loaded } = this.state;
     if (!loaded) {
       this.setState({
         loaded: true,
         questions,
+        currentQuestion: 0,
       });
     }
   }
 
+  // nextQuestion() {
+  //   this.setState((prevState) => ({
+  //     currentQuestion: prevState.currentQuestion + 1,
+  //   }));
+  // }
+
   render() {
-    const { questions } = this.state;
+    const { questions, currentQuestion } = this.state;
+    console.log(questions);
     return (
-      <h1>Em jogo...</h1>
+      <>
+        <h1>Em jogo...</h1>
+        {questions.results && (
+          <Question
+            category={ questions.results[currentQuestion].category }
+            question={ questions.results[currentQuestion].question }
+            result={ questions.results[currentQuestion] }
+          />
+        )}
+      </>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   getQuestions: (token) => dispatch(getTrivia(token)),
+  payload: () => dispatch(getToken()),
 });
 
 const mapStateToProps = (state) => ({
