@@ -5,6 +5,7 @@ import { getToken, getTrivia } from '../actions';
 import fetchTrivia from '../services/fetchTrivia';
 import Question from '../components/Question';
 import Header from '../components/Header';
+import Counter from '../components/Counter';
 
 class InGame extends React.Component {
   constructor() {
@@ -51,12 +52,17 @@ class InGame extends React.Component {
         <h1>Em jogo...</h1>
         {questions.results && (
           <div className="trivia--container">
-            <Question
-              category={ questions.results[currentQuestion].category }
-              question={ questions.results[currentQuestion].question }
-              result={ questions.results[currentQuestion] }
-              nextQuestion={ () => this.nextQuestion() }
-            />
+            <div className="questions">
+              <Question
+                category={ questions.results[currentQuestion].category }
+                question={ questions.results[currentQuestion].question }
+                result={ questions.results[currentQuestion] }
+                nextQuestion={ () => this.nextQuestion() }
+              />
+            </div>
+            <div className="timer">
+              <Counter />
+            </div>
           </div>
         )}
       </>
