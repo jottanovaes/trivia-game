@@ -33,7 +33,7 @@ class Header extends React.Component {
 const mapStateToProps = (state) => state;
 
 Header.propTypes = {
-  player: PropTypes.objectOf(PropTypes.string).isRequired,
-};
+  player: PropTypes.objectOf,
+}.isRequired;
 
 export default connect(mapStateToProps, null)(Header);

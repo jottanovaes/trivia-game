@@ -12,6 +12,7 @@ class InGame extends React.Component {
     this.state = {
       loaded: false,
       questions: {},
+      currentQuestion: 0,
     };
   }
 
@@ -22,12 +23,10 @@ class InGame extends React.Component {
   async getTrivia() {
     let questions = await fetchTrivia();
     const { payload } = this.props;
-    console.log(questions.response_code);
     if (questions.response_code) {
       await payload();
       questions = await fetchTrivia();
     }
-    console.log(questions);
     const { loaded } = this.state;
     if (!loaded) {
       this.setState({
@@ -38,25 +37,27 @@ class InGame extends React.Component {
     }
   }
 
-  // nextQuestion() {
-  //   this.setState((prevState) => ({
-  //     currentQuestion: prevState.currentQuestion + 1,
-  //   }));
-  // }
+  nextQuestion() {
+    this.setState((prevState) => ({
+      currentQuestion: prevState.currentQuestion + 1,
+    }));
+  }
 
   render() {
     const { questions, currentQuestion } = this.state;
-    console.log(questions);
     return (
       <>
         <Header />
         <h1>Em jogo...</h1>
         {questions.results && (
-          <Question
-            category={ questions.results[currentQuestion].category }
-            question={ questions.results[currentQuestion].question }
-            result={ questions.results[currentQuestion] }
-          />
+          <div className="trivia--container">
+            <Question
+              category={ questions.results[currentQuestion].category }
+              question={ questions.results[currentQuestion].question }
+              result={ questions.results[currentQuestion] }
+              nextQuestion={ () => this.nextQuestion() }
+            />
+          </div>
         )}
       </>
     );
