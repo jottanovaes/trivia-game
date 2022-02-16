@@ -5,7 +5,7 @@ import NextBtn from '../NextBtn';
 
 const SORT = 0.5;
 
-export default class Question extends React.Component {
+class Question extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -71,11 +71,15 @@ export default class Question extends React.Component {
   }
 
   handleNext() {
-    const { nextQuestion } = this.props;
+    const { nextQuestion, history, currentQuestion } = this.props;
+    const TOTAL_QUESTION = 5;
     this.setState({
       resultado: [],
     });
     this.handleAnswer();
+    if (currentQuestion + 1 === TOTAL_QUESTION) {
+      history.push('/feedback');
+    }
     nextQuestion();
   }
 
@@ -102,3 +106,5 @@ Question.propTypes = {
   category: PropTypes.string,
   question: PropTypes.string,
 }.isRequired;
+
+export default Question;

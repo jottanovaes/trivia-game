@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getToken, getTrivia } from '../actions';
+import { getToken, getTrivia, resetTime } from '../actions';
 import fetchTrivia from '../services/fetchTrivia';
 import Question from '../components/Question';
 import Header from '../components/Header';
@@ -39,13 +39,18 @@ class InGame extends React.Component {
   }
 
   nextQuestion() {
-    this.setState((prevState) => ({
-      currentQuestion: prevState.currentQuestion + 1,
-    }));
+    const { resetCounter } = this.props;
+    this.setState(
+      (prevState) => ({
+        currentQuestion: prevState.currentQuestion + 1,
+      }),
+      () => resetCounter(),
+    );
   }
 
   render() {
     const { questions, currentQuestion } = this.state;
+    const { history } = this.props;
     return (
       <>
         <Header />
@@ -57,6 +62,8 @@ class InGame extends React.Component {
                 category={ questions.results[currentQuestion].category }
                 question={ questions.results[currentQuestion].question }
                 result={ questions.results[currentQuestion] }
+                currentQuestion={ currentQuestion }
+                history={ history }
                 nextQuestion={ () => this.nextQuestion() }
               />
             </div>
@@ -73,6 +80,7 @@ class InGame extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   getQuestions: (token) => dispatch(getTrivia(token)),
   payload: () => dispatch(getToken()),
+  resetCounter: () => dispatch(resetTime()),
 });
 
 const mapStateToProps = (state) => ({
