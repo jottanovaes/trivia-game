@@ -30,7 +30,7 @@ class Feedback extends React.Component {
 }
 
 Feedback.propTypes = {
-  score: PropTypes.number.isRequired,
-};
+  score: PropTypes.number,
+}.isRequired;
 
 export default Feedback;

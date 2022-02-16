@@ -5,6 +5,7 @@ export const SET_PLAYER = 'SET_PLAYER';
 export const SET_PLAYER_TOKEN = 'SET_PLAYER_TOKEN';
 export const SET_TRIVIA = 'SET_TRIVIA';
 export const SET_TIME = 'SET_TIME';
+export const RESET_TIME = 'RESET_TIME';
 export const SELECT_ANSWER = 'SELECT_ANSWER';
 export const SET_SCORE = 'SET_SCORE';
 
@@ -49,6 +50,10 @@ export const getTrivia = (token) => async (dispatch) => {
 
 export const elapsedTime = () => ({
   type: SET_TIME,
+});
+
+export const resetTime = () => ({
+  type: RESET_TIME,
 });
 
 export const selectAnswer = (payload) => ({

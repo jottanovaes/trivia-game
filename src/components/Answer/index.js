@@ -10,7 +10,6 @@ class Answer extends React.Component {
     if (difficulty) {
       payload(calculateScore(difficulty, time));
       const { player } = this.props;
-      console.log(player);
       saveScore(player);
     }
     handleAnswer();
