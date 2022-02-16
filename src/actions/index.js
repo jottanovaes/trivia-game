@@ -4,6 +4,8 @@ import fetchTrivia from '../services/fetchTrivia';
 export const SET_PLAYER = 'SET_PLAYER';
 export const SET_PLAYER_TOKEN = 'SET_PLAYER_TOKEN';
 export const SET_TRIVIA = 'SET_TRIVIA';
+export const SET_TIME = 'SET_TIME';
+export const SELECT_ANSWER = 'SELECT_ANSWER';
 
 export const requestSetPlayer = (payload) => ({
   type: SET_PLAYER,
@@ -38,3 +40,12 @@ export const getTrivia = (token) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const elapsedTime = () => ({
+  type: SET_TIME,
+});
+
+export const selectAnswer = (payload) => ({
+  type: SELECT_ANSWER,
+  payload,
+});
