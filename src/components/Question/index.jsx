@@ -10,7 +10,24 @@ export default class Question extends React.Component {
     super();
     this.state = {
       answerIsSelected: false,
+      resultado: [],
     };
+  }
+
+  componentDidMount() {
+    this.updateQuestion();
+  }
+
+  componentDidUpdate() {
+    this.updateQuestion();
+  }
+
+  updateQuestion = () => {
+    const { resultado } = this.state;
+    const { result } = this.props;
+    if (!resultado.length) {
+      this.renderAnswers(result);
+    }
   }
 
   htmlDecode = (input) => {
@@ -32,6 +49,7 @@ export default class Question extends React.Component {
       <Answer
         answer={ result.correct_answer }
         key="correct"
+        difficulty={ result.difficulty }
         testid="correct-answer"
         htmlDecode={ this.htmlDecode }
         handleAnswer={ () => this.handleAnswer() }
@@ -43,7 +61,7 @@ export default class Question extends React.Component {
     // https://css-tricks.com/snippets/javascript/shuffle-array/
     const resultado = arrayAnswers.sort(() => SORT - Math.random());
 
-    return resultado;
+    this.setState({ resultado });
   };
 
   handleAnswer() {
@@ -54,20 +72,23 @@ export default class Question extends React.Component {
 
   handleNext() {
     const { nextQuestion } = this.props;
+    this.setState({
+      resultado: [],
+    });
     this.handleAnswer();
     nextQuestion();
   }
 
   render() {
-    const { category, question, result } = this.props;
-    const { answerIsSelected } = this.state;
+    const { category, question } = this.props;
+    const { answerIsSelected, resultado } = this.state;
 
     return (
       <div className="questions">
         <h1 data-testid="question-category">{`${category}`}</h1>
         <p data-testid="question-text">{question}</p>
         <div data-testid="answer-options">
-          {this.renderAnswers(result)}
+          {resultado}
           {answerIsSelected && (
             <NextBtn handleClick={ () => this.handleNext() } />
           )}

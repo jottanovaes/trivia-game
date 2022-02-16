@@ -1,15 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { calculateScore, saveScore } from '../../services/saveScore';
+import { setScore } from '../../actions';
 
 class Answer extends React.Component {
+  handleClick = () => {
+    const { handleAnswer, difficulty, time, payload } = this.props;
+    if (difficulty) {
+      payload(calculateScore(difficulty, time));
+      const { player } = this.props;
+      console.log(player);
+      saveScore(player);
+    }
+    handleAnswer();
+  }
+
   render() {
-    const { answer, testid, handleAnswer, time } = this.props;
+    const { answer, testid, time } = this.props;
     return (
       <button
         type="button"
         data-testid={ testid }
-        onClick={ () => handleAnswer() }
+        onClick={ () => this.handleClick() }
         disabled={ !time }
       >
         {answer}
@@ -23,8 +36,13 @@ Answer.propTypes = {
   nextQuestion: PropTypes.func,
 }.isRequired;
 
-const mapStateToProps = ({ game: { time } }) => ({
+const mapStateToProps = ({ game: { time }, player }) => ({
   time,
+  player,
 });
 
-export default connect(mapStateToProps, null)(Answer);
+const mapDispatchToProps = (dispatch) => ({
+  payload: (score) => dispatch(setScore(score)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Answer);
