@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { requestSetPlayer } from '../actions';
 
 class Feedback extends React.Component {
   handleClick = () => {
-    const { payload } = this.props;
+    const { payload, history } = this.props;
     payload({ score: 0, assertions: 0 });
-  }
+    history.push('/');
+  };
 
   render() {
-    const { score, assertions } = this.props;
+    const { score, assertions, history } = this.props;
     const magicNumber = 3;
-    const message = (assertions >= magicNumber) ? 'Well Done!' : 'Could be better...';
+    const message = assertions >= magicNumber ? 'Well Done!' : 'Could be better...';
 
     return (
       <div>
@@ -36,16 +36,20 @@ class Feedback extends React.Component {
             <span data-testid="feedback-total-question">{assertions}</span>
           </h2>
         </section>
-        <Link to="/">
-          <button
-            type="button"
-            onClick={ this.handleClick }
-            data-testid="btn-play-again"
-          >
-            Play Again
-
-          </button>
-        </Link>
+        <button
+          type="button"
+          onClick={ this.handleClick }
+          data-testid="btn-play-again"
+        >
+          Play Again
+        </button>
+        <button
+          type="button"
+          data-testid="btn-ranking"
+          onClick={ () => history.push('/ranking') }
+        >
+          Ranking
+        </button>
       </div>
     );
   }
@@ -56,9 +60,7 @@ Feedback.propTypes = {
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
-
   payload: (payload) => dispatch(requestSetPlayer(payload)),
-
 });
 
 const mapStateToProps = ({ player: { score, assertions } }) => ({
