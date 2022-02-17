@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Ranking extends React.Component {
   render() {
+    const { history } = this.props;
     const getLocalStorage = JSON.parse(localStorage.getItem('ranking'));
     const playerRanking = getLocalStorage
       && getLocalStorage.sort((a, b) => b.score - a.score);
@@ -17,9 +19,21 @@ class Ranking extends React.Component {
             </div>
           ))}
         </div>
+        <button
+          type="button"
+          data-testid="btn-go-home"
+          onClick={ () => history.push('/') }
+        >
+          Voltar ao Início
+
+        </button>
       </div>
     );
   }
 }
+
+Ranking.propTypes = {
+  history: PropTypes.objectOf,
+}.isRequired;
 
 export default Ranking;
