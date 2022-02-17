@@ -12,10 +12,7 @@ class Feedback extends React.Component {
   }
 
   render() {
-    const { score } = this.props;
-    console.log(score);
-    const getLocalStorage = JSON.parse(localStorage.getItem('Ranking'));
-    const { assertions } = getLocalStorage[0];
+    const { score, assertions } = this.props;
     const magicNumber = 3;
     const message = (assertions >= magicNumber) ? 'Well Done!' : 'Could be better...';
 
@@ -26,10 +23,18 @@ class Feedback extends React.Component {
           <h1 data-testid="feedback-text">{message}</h1>
         </section>
         <section>
-          <h2 data-testid="feedback-total-score">{score}</h2>
+          <h2>
+            Score:
+            {' '}
+            <span data-testid="feedback-total-score">{score}</span>
+          </h2>
         </section>
         <section>
-          <h2 data-testid="feedback-total-question">{assertions}</h2>
+          <h2>
+            Assertions:
+            {' '}
+            <span data-testid="feedback-total-question">{assertions}</span>
+          </h2>
         </section>
         <Link to="/">
           <button
@@ -55,4 +60,9 @@ const mapDispatchToProps = (dispatch) => ({
   payload: (payload) => dispatch(requestSetPlayer(payload)),
 
 });
-export default connect(null, mapDispatchToProps)(Feedback);
+
+const mapStateToProps = ({ player: { score, assertions } }) => ({
+  score,
+  assertions,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
