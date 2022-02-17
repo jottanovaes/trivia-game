@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getToken, requestSetPlayer } from '../actions';
 import SettingsBtn from '../components/SettingsBtn';
+import NeonTitle from '../components/NeonTitle';
 
 class Login extends React.Component {
   constructor() {
@@ -43,6 +44,7 @@ class Login extends React.Component {
     const { history } = this.props;
     return (
       <>
+        <NeonTitle />
         <input
           value={ name }
           data-testid="input-player-name"

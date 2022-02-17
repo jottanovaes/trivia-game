@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import encryptEmail from '../services/encryptEmail';
+import NeonTitle from './NeonTitle';
 
 class Header extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class Header extends React.Component {
     return (
       <div>
         <header>
+          <NeonTitle />
           <img
             data-testid="header-profile-picture"
             src={ `https://www.gravatar.com/avatar/${encryptEmail(player.gravatarEmail)}` }
@@ -30,7 +32,7 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = ({ player }) => ({ player });
 
 Header.propTypes = {
   player: PropTypes.objectOf,

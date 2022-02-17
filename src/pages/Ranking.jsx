@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NeonTitle from '../components/NeonTitle';
 
 class Ranking extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class Ranking extends React.Component {
       && getLocalStorage.sort((a, b) => b.score - a.score);
     return (
       <div>
+        <NeonTitle />
         <h1 data-testid="ranking-title">Ranking</h1>
         <div>
           {playerRanking && playerRanking.map((player, index) => (
