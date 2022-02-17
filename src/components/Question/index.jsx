@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Answer from '../Answer';
 import NextBtn from '../NextBtn';
+import './style.css';
 
 const SORT = 0.5;
 
@@ -36,8 +37,11 @@ class Question extends React.Component {
   };
 
   renderAnswers = (result) => {
+    const { answerIsSelected } = this.state;
+    console.log(answerIsSelected);
     const incorrect = result.incorrect_answers.map((answer, index) => (
       <Answer
+        className="answer incorrect"
         answer={ answer }
         key={ index }
         testid={ `wrong-answer-${index}` }
@@ -47,6 +51,7 @@ class Question extends React.Component {
     ));
     const correct = (
       <Answer
+        className="answer correct"
         answer={ result.correct_answer }
         key="correct"
         difficulty={ result.difficulty }
@@ -92,7 +97,9 @@ class Question extends React.Component {
         <h1 data-testid="question-category">{`${category}`}</h1>
         <p data-testid="question-text">{question}</p>
         <div data-testid="answer-options">
-          {resultado}
+          {!answerIsSelected ? resultado
+            .map((answer) => ({ ...answer, props: { ...answer.props, className: '' } }))
+            : resultado}
           {answerIsSelected && (
             <NextBtn handleClick={ () => this.handleNext() } />
           )}

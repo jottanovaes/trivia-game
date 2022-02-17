@@ -16,9 +16,10 @@ class Answer extends React.Component {
   }
 
   render() {
-    const { answer, testid, time } = this.props;
+    const { answer, testid, time, className } = this.props;
     return (
       <button
+        className={ className }
         type="button"
         data-testid={ testid }
         onClick={ () => this.handleClick() }
