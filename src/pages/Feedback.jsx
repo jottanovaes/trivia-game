@@ -13,10 +13,9 @@ class Feedback extends React.Component {
 
   render() {
     const { score } = this.props;
-    const getLocalStorage = (localStorage.getItem('state') !== null)
-      ? JSON.parse(localStorage.getItem('state'))
-      : { player: { assertions: '', score: '' } };
-    const { assertions } = getLocalStorage.player;
+    console.log(score);
+    const getLocalStorage = JSON.parse(localStorage.getItem('Ranking'));
+    const { assertions } = getLocalStorage[0];
     const magicNumber = 3;
     const message = (assertions >= magicNumber) ? 'Well Done!' : 'Could be better...';
 
