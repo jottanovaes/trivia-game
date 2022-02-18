@@ -13,7 +13,7 @@ export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-family: neon;
-  margin: 6vh auto;
+  margin: 3vh auto;
   padding: 1vw;
   width: 33.3vw;
 `;

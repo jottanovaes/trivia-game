@@ -30,5 +30,3 @@ export const StyledCorrectAnswerButton = styled.button`
     cursor: pointer;
   }
 `;
-
-export const b = 1;

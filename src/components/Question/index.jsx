@@ -4,6 +4,7 @@ import CorrectAnswer from '../CorrectAnswer';
 import IncorrectAnswer from '../IncorrectAnswer';
 import NextBtn from '../NextBtn';
 import StyledQuestionsDiv from './style';
+import { StyledInputContainer } from '../../pages/styles';
 // import './style.css';
 
 const SORT = 0.5;
@@ -43,7 +44,7 @@ class Question extends React.Component {
     const incorrect = result.incorrect_answers.map((answer, index) => (
       <IncorrectAnswer
         className="incorrect"
-        answer={ answer }
+        answer={ this.htmlDecode(answer) }
         key={ index }
         testid={ `wrong-answer-${index}` }
         htmlDecode={ this.htmlDecode }
@@ -54,7 +55,7 @@ class Question extends React.Component {
     const correct = (
       <CorrectAnswer
         className="correct"
-        answer={ result.correct_answer }
+        answer={ this.htmlDecode(result.correct_answer) }
         key="correct"
         difficulty={ result.difficulty }
         testid="correct-answer"
@@ -96,7 +97,7 @@ class Question extends React.Component {
     const { answerIsSelected, resultado } = this.state;
 
     return (
-      <div className="questions">
+      <StyledInputContainer questions>
         <h1 data-testid="question-category">{`${category}`}</h1>
         <p data-testid="question-text">{question}</p>
         <StyledQuestionsDiv data-testid="answer-options">
@@ -110,7 +111,7 @@ class Question extends React.Component {
             <NextBtn handleClick={ () => this.handleNext() } />
           )}
         </StyledQuestionsDiv>
-      </div>
+      </StyledInputContainer>
     );
   }
 }

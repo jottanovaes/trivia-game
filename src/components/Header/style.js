@@ -35,7 +35,7 @@ export const StyledTopContainer = styled.div`
   border-radius: 2vw;
   display: flex;
   flex-direction: column;
-  margin: 6vh auto;
+  margin: 2vh auto;
   padding: 1vw;
   width: 50%;
 `;
