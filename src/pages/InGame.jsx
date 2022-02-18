@@ -18,6 +18,8 @@ class InGame extends React.Component {
   }
 
   async componentDidMount() {
+    const { resetCounter } = this.props;
+    resetCounter();
     this.getTrivia();
   }
 
@@ -54,7 +56,6 @@ class InGame extends React.Component {
     return (
       <>
         <Header />
-        <h1>Em jogo...</h1>
         {questions.results && (
           <div className="trivia--container">
             <div className="questions">

@@ -29,7 +29,7 @@ class Question extends React.Component {
     if (!resultado.length) {
       this.renderAnswers(result);
     }
-  }
+  };
 
   htmlDecode = (input) => {
     const doc = new DOMParser().parseFromString(input, 'text/html');
@@ -38,7 +38,6 @@ class Question extends React.Component {
 
   renderAnswers = (result) => {
     const { answerIsSelected } = this.state;
-    console.log(answerIsSelected);
     const incorrect = result.incorrect_answers.map((answer, index) => (
       <Answer
         className="answer incorrect"
@@ -47,6 +46,7 @@ class Question extends React.Component {
         testid={ `wrong-answer-${index}` }
         htmlDecode={ this.htmlDecode }
         handleAnswer={ () => this.handleAnswer() }
+        disabled={ !answerIsSelected }
       />
     ));
     const correct = (
@@ -58,6 +58,7 @@ class Question extends React.Component {
         testid="correct-answer"
         htmlDecode={ this.htmlDecode }
         handleAnswer={ () => this.handleAnswer() }
+        disabled={ !answerIsSelected }
       />
     );
 
@@ -97,8 +98,11 @@ class Question extends React.Component {
         <h1 data-testid="question-category">{`${category}`}</h1>
         <p data-testid="question-text">{question}</p>
         <div data-testid="answer-options">
-          {!answerIsSelected ? resultado
-            .map((answer) => ({ ...answer, props: { ...answer.props, className: '' } }))
+          {!answerIsSelected
+            ? resultado.map((answer) => ({
+              ...answer,
+              props: { ...answer.props, className: '', disabled: false },
+            }))
             : resultado}
           {answerIsSelected && (
             <NextBtn handleClick={ () => this.handleNext() } />

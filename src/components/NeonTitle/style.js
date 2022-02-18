@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-const ContainerAnimation = keyframes`
+export const ContainerAnimation = keyframes`
   from { box-shadow: 0.5vw 0 1vw 1vw #f88e26, inset 0.5vw 0 1vw 1vw #f88e26; }
   to { box-shadow: 0.5vw 0 2vw 1vw #f88e26, inset 0.5vw 0 2vw 1vw #f88e26; }
 `;

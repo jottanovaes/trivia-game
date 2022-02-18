@@ -1,4 +1,7 @@
 /* https://www.svgbackgrounds.com/ */
+* {
+  box-sizing: border-box;
+}
 
 @font-face {
   font-family: neon;

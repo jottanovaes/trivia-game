@@ -32,7 +32,7 @@ export const StyledInput = styled.input`
   }
 `;
 
-const ButtonAnimation = keyframes`
+export const ButtonAnimation = keyframes`
   from { box-shadow: 0 0 0.5vw #2fc18c, 0 0 1vw #2fc18c, 0 0 1.5vw #2fc18c; }
   to { box-shadow: 0 0 1.5vw #3effb8,0 0 1vw #2fc18c, 0 0 0.5vw #2fc18c; }
 `;

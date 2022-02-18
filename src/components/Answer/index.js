@@ -16,14 +16,15 @@ class Answer extends React.Component {
   }
 
   render() {
-    const { answer, testid, time, className } = this.props;
+    const { answer, testid, time, className, disabled } = this.props;
     return (
       <button
         className={ className }
         type="button"
         data-testid={ testid }
         onClick={ () => this.handleClick() }
-        disabled={ !time }
+        disabled={ !(time && !disabled) }
+        // https://stackoverflow.com/questions/59480912/how-is-the-nand-gate-implemented-conceptually
       >
         {answer}
       </button>
