@@ -60,6 +60,7 @@ export const StyledButton = styled.button`
 
 // https://www.cssscript.com/demo/neon-glass-cards/
 export const StyledInputContainer = styled.div`
+  align-items: center;
   background: rgba(255, 255, 255, 0.01);
   border-radius: 8px;
   box-shadow: inset 0 22px 56px -36px rgba(255, 255, 255, 0.5),
@@ -69,10 +70,14 @@ export const StyledInputContainer = styled.div`
     inset 0 2px 9px rgba(154, 146, 210, 0.3),
     inset 0 1px 10px rgba(227, 222, 255, 0.2);
   color: #fff;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
   margin: auto;
   padding: 4vh;
+  gap: ${(props) => (props.questions && '1vw')};
   transition: 0.3s;
-  width: 33%;
+  width: ${(props) => (props.questions ? '66%' : '33%')};
 
   &:hover {
     box-shadow: inset 0 19px 28px -18px rgba(255, 255, 255, 0.5),

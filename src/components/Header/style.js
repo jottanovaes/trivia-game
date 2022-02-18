@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 export const StyledImg = styled.img`
   clip-path: circle(50% at center);
-  width: 10vw;
+  width: 5vw;
 `;
 
 export const StyledPlayerDataR = styled.div`
@@ -35,7 +35,7 @@ export const StyledTopContainer = styled.div`
   border-radius: 2vw;
   display: flex;
   flex-direction: column;
-  margin: 6vh auto;
+  margin: 2vh auto;
   padding: 1vw;
   width: 50%;
 `;

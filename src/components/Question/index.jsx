@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Answer from '../Answer';
+import CorrectAnswer from '../CorrectAnswer';
+import IncorrectAnswer from '../IncorrectAnswer';
 import NextBtn from '../NextBtn';
-import './style.css';
+import StyledQuestionsDiv from './style';
+import { StyledInputContainer } from '../../pages/styles';
+// import './style.css';
 
 const SORT = 0.5;
 
@@ -39,9 +42,9 @@ class Question extends React.Component {
   renderAnswers = (result) => {
     const { answerIsSelected } = this.state;
     const incorrect = result.incorrect_answers.map((answer, index) => (
-      <Answer
-        className="answer incorrect"
-        answer={ answer }
+      <IncorrectAnswer
+        className="incorrect"
+        answer={ this.htmlDecode(answer) }
         key={ index }
         testid={ `wrong-answer-${index}` }
         htmlDecode={ this.htmlDecode }
@@ -50,9 +53,9 @@ class Question extends React.Component {
       />
     ));
     const correct = (
-      <Answer
-        className="answer correct"
-        answer={ result.correct_answer }
+      <CorrectAnswer
+        className="correct"
+        answer={ this.htmlDecode(result.correct_answer) }
         key="correct"
         difficulty={ result.difficulty }
         testid="correct-answer"
@@ -94,10 +97,10 @@ class Question extends React.Component {
     const { answerIsSelected, resultado } = this.state;
 
     return (
-      <div className="questions">
+      <StyledInputContainer questions>
         <h1 data-testid="question-category">{`${category}`}</h1>
         <p data-testid="question-text">{question}</p>
-        <div data-testid="answer-options">
+        <StyledQuestionsDiv data-testid="answer-options">
           {!answerIsSelected
             ? resultado.map((answer) => ({
               ...answer,
@@ -107,8 +110,8 @@ class Question extends React.Component {
           {answerIsSelected && (
             <NextBtn handleClick={ () => this.handleNext() } />
           )}
-        </div>
-      </div>
+        </StyledQuestionsDiv>
+      </StyledInputContainer>
     );
   }
 }
