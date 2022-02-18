@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import { getToken, requestSetPlayer } from '../actions';
 import SettingsBtn from '../components/SettingsBtn';
 import NeonTitle from '../components/NeonTitle';
+import {
+  StyledLoginField,
+  StyledInput,
+  StyledInputContainer,
+  StyledButton,
+} from './styles';
 
 class Login extends React.Component {
   constructor() {
@@ -18,18 +24,21 @@ class Login extends React.Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    this.setState({
-      [name]: value,
-    }, () => {
-      this.disableButton();
-    });
-  }
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        this.disableButton();
+      },
+    );
+  };
 
   disableButton = () => {
     const { name, email } = this.state;
     const result = name && email;
     this.setState({ disableBtn: !result });
-  }
+  };
 
   handleClick = async () => {
     const { payload, history, payloadLogin } = this.props;
@@ -37,7 +46,7 @@ class Login extends React.Component {
     await payload();
     await payloadLogin({ name, gravatarEmail: email });
     history.push('/ingame');
-  }
+  };
 
   render() {
     const { name, email, disableBtn } = this.state;
@@ -45,28 +54,34 @@ class Login extends React.Component {
     return (
       <>
         <NeonTitle />
-        <input
-          value={ name }
-          data-testid="input-player-name"
-          name="name"
-          type="text"
-          onChange={ this.handleChange }
-        />
-        <input
-          value={ email }
-          data-testid="input-gravatar-email"
-          name="email"
-          type="email"
-          onChange={ this.handleChange }
-        />
-        <button
-          type="button"
-          disabled={ disableBtn }
-          data-testid="btn-play"
-          onClick={ () => this.handleClick() }
-        >
-          Jogar
-        </button>
+        <StyledInputContainer>
+          <StyledLoginField>
+            <StyledInput
+              data-testid="input-player-name"
+              name="name"
+              onChange={ this.handleChange }
+              placeholder="Nome"
+              type="text"
+              value={ name }
+            />
+            <StyledInput
+              data-testid="input-gravatar-email"
+              name="email"
+              onChange={ this.handleChange }
+              placeholder="Gravatar Email"
+              type="email"
+              value={ email }
+            />
+            <StyledButton
+              data-testid="btn-play"
+              disabled={ disableBtn }
+              onClick={ () => this.handleClick() }
+              type="button"
+            >
+              JOGAR
+            </StyledButton>
+          </StyledLoginField>
+        </StyledInputContainer>
         <SettingsBtn history={ history } />
       </>
     );
@@ -78,9 +93,7 @@ Login.propTypes = {
   history: PropTypes.objectOf,
 }.isRequired;
 const mapDispatchToProps = (dispatch) => ({
-
   payload: () => dispatch(getToken()),
   payloadLogin: (payload) => dispatch(requestSetPlayer(payload)),
-
 });
 export default connect(null, mapDispatchToProps)(Login);

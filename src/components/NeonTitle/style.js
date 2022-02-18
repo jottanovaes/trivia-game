@@ -9,7 +9,7 @@ export const StyledContainer = styled.div`
   align-items: center;
   animation: ${ContainerAnimation} 1s ease-in-out infinite alternate;
   border-radius: 2vw;
-  border: 1vw solid #f8bc26;
+  border: 0.75vw solid #f8bc26;
   display: flex;
   flex-direction: column;
   font-family: neon;

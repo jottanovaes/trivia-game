@@ -9,7 +9,15 @@ export default class SettingsBtn extends React.Component {
       <FcSettings
         data-testid="btn-settings"
         onClick={ () => history.push('/settings') }
-        style={ { cursor: 'pointer', marginLeft: '8px', width: '30px', height: '30px' } }
+        style={ {
+          cursor: 'pointer',
+          marginLeft: '8px',
+          width: '30px',
+          height: '30px',
+          position: 'absolute',
+          top: '5%',
+          left: '95%',
+        } }
       />
     );
   }
