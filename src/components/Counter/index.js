@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { elapsedTime } from '../../actions';
+import { StyledCounter, CounterWrap } from './style';
 
 class Counter extends React.Component {
   componentDidMount() {
@@ -16,8 +17,11 @@ class Counter extends React.Component {
   render() {
     const { time } = this.props;
     return (
-      <section>
-        <p className="time--text">
+      <section style={ { width: '66%', margin: 'auto', height: '0' } }>
+        <CounterWrap className="w3-light-grey w3-tiny">
+          <StyledCounter className="w3-container w3-green" time={ time }> </StyledCounter>
+        </CounterWrap>
+        <p className="time--text" style={ { color: 'transparent' } }>
           Tempo:
           {' '}
           <span className="time--span">{time}</span>
