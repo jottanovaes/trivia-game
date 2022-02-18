@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { calculateScore, saveScore } from '../../services/saveScore';
 import { setScore } from '../../actions';
+import { StyledCorrectAnswerButton } from './style';
 
-class Answer extends React.Component {
+class CorrectAnswer extends React.Component {
   handleClick = () => {
     const { handleAnswer, difficulty, time, payload } = this.props;
     if (difficulty) {
@@ -18,7 +19,7 @@ class Answer extends React.Component {
   render() {
     const { answer, testid, time, className, disabled } = this.props;
     return (
-      <button
+      <StyledCorrectAnswerButton
         className={ className }
         type="button"
         data-testid={ testid }
@@ -27,12 +28,12 @@ class Answer extends React.Component {
         // https://stackoverflow.com/questions/59480912/how-is-the-nand-gate-implemented-conceptually
       >
         {answer}
-      </button>
+      </StyledCorrectAnswerButton>
     );
   }
 }
 
-Answer.propTypes = {
+CorrectAnswer.propTypes = {
   answer: PropTypes.string,
   nextQuestion: PropTypes.func,
 }.isRequired;
@@ -46,4 +47,4 @@ const mapDispatchToProps = (dispatch) => ({
   payload: (score) => dispatch(setScore(score)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Answer);
+export default connect(mapStateToProps, mapDispatchToProps)(CorrectAnswer);

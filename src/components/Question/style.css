@@ -1,8 +1,8 @@
 .incorrect {
-  border: solid 3px red;
+  border: solid 0.1px red;
 }
 
 .correct {
-  border: solid 3px rgb(6, 240, 15);
+  border: solid 0.1px rgb(6, 240, 15);
 }
 
