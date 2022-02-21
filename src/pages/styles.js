@@ -97,7 +97,7 @@ export const StyledRankingButton = styled.button`
   background-color: transparent;
   border-radius: 4px;
   border: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 254, 0.5);
   font-family: 'Roboto', sans-serif;
   font-size: 2.5vh;
   font-weight: 700;
