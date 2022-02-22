@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { calculateScore, saveScore } from '../../services/saveScore';
+import { saveScore } from '../../services/saveScore';
 import { setScore } from '../../actions';
 import { StyledIncorrectAnswerButton } from './style';
 
 class IncorrectAnswer extends React.Component {
   handleClick = () => {
-    const { handleAnswer, difficulty, time, payload } = this.props;
+    const { handleAnswer, difficulty } = this.props;
     if (difficulty) {
-      payload(calculateScore(difficulty, time));
+      // payload(0);
       const { player } = this.props;
+      console.log(player);
       saveScore(player);
     }
     handleAnswer();

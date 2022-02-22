@@ -16,7 +16,7 @@ export default class SettingsBtn extends React.Component {
           height: '30px',
           position: 'absolute',
           top: '5%',
-          left: '95%',
+          left: '85vw',
         } }
       />
     );

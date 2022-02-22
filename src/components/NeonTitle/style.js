@@ -15,7 +15,7 @@ export const StyledContainer = styled.div`
   font-family: neon;
   margin: 3vh auto;
   padding: 1vw;
-  width: 33.3vw;
+  width: clamp(300px,33%, 600px);
 `;
 
 const TriviaAnimation = keyframes`
@@ -27,7 +27,7 @@ export const TriviaContainer = styled.div`
   animation: ${TriviaAnimation} 1s ease-in-out infinite alternate;
   color: #fb4264;
   font-family: neon;
-  font-size: 5vw;
+  font-size: 3em;
   font-weight: bold;
 `;
 
@@ -39,7 +39,7 @@ const TrybeAnimation = keyframes`
 export const TrybeContainer = styled.div`
   color: #2fc18c;
   animation: ${TrybeAnimation} 1s ease-in-out infinite alternate;
-  font-size: 5vw;
+  font-size: 3em;
   font-weight: bold;
 `;
 
