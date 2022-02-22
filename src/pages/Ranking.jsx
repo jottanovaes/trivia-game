@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import NeonTitle from '../components/NeonTitle';
+import { requestSetPlayer } from '../actions';
 
 class Ranking extends React.Component {
+  handleClick = () => {
+    const { payload, history } = this.props;
+    payload({ score: 0, assertions: 0 });
+    history.push('/');
+  };
+
   render() {
-    const { history } = this.props;
-    const getLocalStorage = JSON.parse(localStorage.getItem('ranking'));
+    const getLocalStorage = JSON.parse(localStorage.getItem('Ranking'));
     const playerRanking = getLocalStorage
       && getLocalStorage.sort((a, b) => b.score - a.score);
     return (
@@ -24,7 +31,7 @@ class Ranking extends React.Component {
         <button
           type="button"
           data-testid="btn-go-home"
-          onClick={ () => history.push('/') }
+          onClick={ () => this.handleClick() }
         >
           Voltar ao Início
 
@@ -36,6 +43,11 @@ class Ranking extends React.Component {
 
 Ranking.propTypes = {
   history: PropTypes.objectOf,
+  score: PropTypes.number,
 }.isRequired;
 
-export default Ranking;
+const mapDispatchToProps = (dispatch) => ({
+  payload: (payload) => dispatch(requestSetPlayer(payload)),
+});
+
+export default connect(null, mapDispatchToProps)(Ranking);

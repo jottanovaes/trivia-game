@@ -46,6 +46,7 @@ class Question extends React.Component {
         className="incorrect"
         answer={ this.htmlDecode(answer) }
         key={ index }
+        difficulty={ result.difficulty }
         testid={ `wrong-answer-${index}` }
         htmlDecode={ this.htmlDecode }
         handleAnswer={ () => this.handleAnswer() }
