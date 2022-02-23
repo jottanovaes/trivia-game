@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CorrectAnswer from '../CorrectAnswer';
 import IncorrectAnswer from '../IncorrectAnswer';
 import NextBtn from '../NextBtn';
-import StyledQuestionsDiv from './style';
+import { StyledQuestionsDiv, StyledQuestion } from './style';
 import { StyledInputContainer } from '../../pages/styles';
 // import './style.css';
 
@@ -99,7 +99,9 @@ class Question extends React.Component {
 
     return (
       <StyledInputContainer questions>
-        <h1 data-testid="question-category">{`${category}`}</h1>
+        <StyledQuestion data-testid="question-category">
+          {`${category}`}
+        </StyledQuestion>
         <p data-testid="question-text">{question}</p>
         <StyledQuestionsDiv data-testid="answer-options">
           {!answerIsSelected

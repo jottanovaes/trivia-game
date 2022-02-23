@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 export const StyledImg = styled.img`
   clip-path: circle(50% at center);
-  width: 5vw;
+  width: 75px;
 `;
 
 export const StyledPlayerDataR = styled.div`

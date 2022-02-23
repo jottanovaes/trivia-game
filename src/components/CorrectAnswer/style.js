@@ -16,7 +16,8 @@ export const StyledCorrectAnswerButton = styled.button`
   font-weight: 400;
   height: 42px;
   outline: none;
-  width: 25vw;
+  /* width: clamp(33%, 50% , 100%); */
+  width: clamp(250px, 66% ,600px);
 
   &:disabled {
     animation: ${ButtonAnimation} 1s ease-in-out infinite alternate;

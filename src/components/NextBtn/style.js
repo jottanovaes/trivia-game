@@ -6,10 +6,11 @@ const StyledNextButton = styled.button`
     border: none;
     cursor: pointer;
     font-family: neon;
-    font-size: 3vh;
+    font-size: 1em;
     overflow: visible;
     outline: none;
-    grid-column-end: span 2;
+    /* grid-column-end: span 2; */
+    /* grid-area: grid-row-end / first / end; */
     margin-top: 2vh;
 `;
 

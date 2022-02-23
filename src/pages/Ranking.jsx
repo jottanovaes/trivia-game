@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NeonTitle from '../components/NeonTitle';
 import { requestSetPlayer } from '../actions';
+import { StyledButton, StyledPlayerRank, StyledRankingContainer } from './styles';
+import { StyledImg } from '../components/Header/style';
+import { TrybeContainer } from '../components/NeonTitle/style';
 
 class Ranking extends React.Component {
   handleClick = () => {
@@ -13,30 +16,40 @@ class Ranking extends React.Component {
 
   render() {
     const getLocalStorage = JSON.parse(localStorage.getItem('Ranking'));
-    const playerRanking = getLocalStorage
-      && getLocalStorage.sort((a, b) => b.score - a.score);
+    const playerRanking = getLocalStorage && getLocalStorage
+      .sort((a, b) => b.score - a.score);
     return (
-      <div>
+      <>
         <NeonTitle />
-        <h1 data-testid="ranking-title">Ranking</h1>
-        <div>
-          {playerRanking && playerRanking.map((player, index) => (
-            <div key={ index }>
-              <img src={ player.gravatarEmail } alt={ player.name } />
-              <p data-testid={ `player-name-${index}` }>{player.name}</p>
-              <p data-testid={ `player-score-${index}` }>{player.score}</p>
-            </div>
-          ))}
-        </div>
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ () => this.handleClick() }
+        <TrybeContainer
+          data-testid="ranking-title"
+          style={ { fontFamily: 'neon', textAlign: 'center' } }
         >
-          Voltar ao Início
-
-        </button>
-      </div>
+          Ranking
+        </TrybeContainer>
+        <StyledRankingContainer>
+          {playerRanking
+            && playerRanking.map((player, index) => (
+              <StyledPlayerRank key={ index }>
+                {console.log(player.picture)}
+                <StyledImg
+                  src={ `http://www.gravatar.com/avatar/${player.picture}` }
+                  alt={ player.name }
+                />
+                <p data-testid={ `player-name-${index}` }>{player.name}</p>
+                <p data-testid={ `player-score-${index}` }>{player.score}</p>
+              </StyledPlayerRank>
+            ))}
+          <StyledButton
+            type="button"
+            data-testid="btn-go-home"
+            onClick={ () => this.handleClick() }
+            style={ { marginTop: '20px' } }
+          >
+            Voltar ao Início
+          </StyledButton>
+        </StyledRankingContainer>
+      </>
     );
   }
 }

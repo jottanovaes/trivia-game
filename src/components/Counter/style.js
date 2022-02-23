@@ -12,4 +12,5 @@ export const StyledCounter = styled.div`
 `;
 export const CounterWrap = styled.div`
   background-color: transparent !important;
+  /* width:clamp(270px,50%,600px); */
 `;

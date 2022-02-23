@@ -15,7 +15,7 @@ export const StyledContainer = styled.div`
   font-family: neon;
   margin: 3vh auto;
   padding: 1vw;
-  width: clamp(300px,33%, 600px);
+  width: clamp(270px,33%, 600px);
 `;
 
 const TriviaAnimation = keyframes`

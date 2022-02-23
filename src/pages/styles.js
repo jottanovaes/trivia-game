@@ -6,6 +6,7 @@ export const StyledLoginField = styled.div`
   flex-direction: column;
   gap: 2vh;
   padding-top: 2vh;
+  width: 95%;
 `;
 
 export const StyledFeedbackDiv = styled.div`
@@ -22,11 +23,11 @@ align-items: center;
   display: flex;
   font-family: 'Roboto', sans-serif;
   flex-direction: column;
-  margin: auto;
+  margin: 0 auto;
   padding: 4vh;
   gap: ${(props) => (props.questions && '1vw')};
   transition: 0.3s;
-  width: 600px;
+  width: 90%;
 
   &:hover {
     box-shadow: inset 0 19px 28px -18px rgba(255, 255, 255, 0.5),
@@ -37,6 +38,46 @@ align-items: center;
       inset 0 2px 25px rgba(227, 222, 255, 0.23);
   }
 `;
+
+export const StyledRankingContainer = styled.div`
+  align-items: center;
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 8px;
+  box-shadow: inset 0 22px 56px -36px rgba(255, 255, 255, 0.5),
+    inset 0 4px 5px -4px rgba(255, 255, 255, 1),
+    inset 0 -31px 34px -32px rgba(96, 68, 144, 0.3),
+    inset 0 39px 50px -34px rgba(202, 172, 255, 0.3),
+    inset 0 2px 9px rgba(154, 146, 210, 0.3),
+    inset 0 1px 10px rgba(227, 222, 255, 0.2);
+  color: #fff;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 4vh;
+  gap: ${(props) => (props.questions && '1vw')};
+  transition: 0.3s;
+  width: 90%;
+
+  &:hover {
+    box-shadow: inset 0 19px 28px -18px rgba(255, 255, 255, 0.5),
+      inset 0 4px 6px -3px rgba(255, 255, 255, 1),
+      inset 0 -51px 44px -42px rgba(96, 68, 144, 0.3),
+      inset 0 59px 60px -32px rgba(202, 172, 255, 0.3),
+      inset 0 4px 16px rgba(154, 146, 210, 0.3),
+      inset 0 2px 25px rgba(227, 222, 255, 0.23);
+  }
+`;
+
+export const StyledPlayerRank = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: clamp(20%, 40%, 60%);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  width: clamp(270px, 33%, 600px);
+ `;
 
 export const StyledInput = styled.input`
   background-color: transparent;
@@ -50,12 +91,12 @@ export const StyledInput = styled.input`
   border: none;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: 700;
   height: 42px;
   outline: none;
   text-indent: 12px;
-  width: 25vw;
+  width: 100%;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
@@ -78,7 +119,7 @@ export const StyledButton = styled.button`
   border: none;
   color: rgba(255, 255, 255, 0.5);
   font-family: 'Roboto', sans-serif;
-  font-size: 2.5vh;
+  font-size: 1em;
   font-weight: 700;
   height: 42px;
   outline: none;
@@ -130,11 +171,12 @@ export const StyledInputContainer = styled.div`
   display: flex;
   font-family: 'Roboto', sans-serif;
   flex-direction: column;
-  margin: auto;
+  margin: 0 auto;
   padding: 4vh;
   gap: ${(props) => (props.questions && '1vw')};
   transition: 0.3s;
-  width: ${(props) => (props.questions ? '66%' : '33%')};
+  /* width: ${(props) => (props.questions ? '66%' : '33%')}; */
+  width: clamp(270px, 50%, 600px);
 
   &:hover {
     box-shadow: inset 0 19px 28px -18px rgba(255, 255, 255, 0.5),

@@ -17,9 +17,17 @@ class Counter extends React.Component {
   render() {
     const { time } = this.props;
     return (
-      <section style={ { width: '66%', margin: 'auto', height: '0' } }>
+      <section
+        style={ {
+          width: 'clamp(270px, 50%, 600px)',
+          margin: 'auto',
+          height: '0',
+        } }
+      >
         <CounterWrap className="w3-light-grey w3-tiny">
-          <StyledCounter className="w3-container w3-green" time={ time }> </StyledCounter>
+          <StyledCounter className="w3-container w3-green" time={ time }>
+            {' '}
+          </StyledCounter>
         </CounterWrap>
         <p className="time--text" style={ { color: 'transparent' } }>
           Tempo:
