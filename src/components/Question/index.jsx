@@ -102,7 +102,7 @@ class Question extends React.Component {
         <StyledQuestion data-testid="question-category">
           {`${category}`}
         </StyledQuestion>
-        <p data-testid="question-text">{question}</p>
+        <p data-testid="question-text" style={ { width: '100%' } }>{question}</p>
         <StyledQuestionsDiv data-testid="answer-options">
           {!answerIsSelected
             ? resultado.map((answer) => ({
